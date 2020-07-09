@@ -16,9 +16,9 @@
 			$.ajax({
 				url: '<?= site_url('admin/Master/Data_Kategori') ?>',
 				type: 'POST',
-				async:false,
 				success:function (data) {
 					$('#view-kategori').html(data);
+					$('#table-kategori').DataTable();
 				}
 			});			
 		}

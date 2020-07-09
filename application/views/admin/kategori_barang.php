@@ -33,7 +33,7 @@
                                 <strong class="card-title">Kategori Barang</strong>
                             </div>
                             <div class="card-body">
-                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                <table id="table-kategori" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th style="width: 15px;">No</th>

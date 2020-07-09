@@ -22,7 +22,7 @@
                                         <?php foreach ($sub_menu->result() as $sub) {?>
                                             <li>
                                                 <i class="<?= $sub->icon .' '.$sub->warna?>"></i>
-                                                <a href="<?= base_url($this->session->userdata('link').'/'.$main->link.'/'.$sub->link) ?>"><?= $sub->nama_menu ?></a>
+                                                <a class="<?= $sub->link == $this->uri->segment(3) ? 'text-primary':''; ?>" href="<?= base_url($this->session->userdata('link').'/'.$main->link.'/'.$sub->link) ?>"><?= $sub->nama_menu ?></a>
                                             </li>
                                         <?php } ?>
                                     </ul>
