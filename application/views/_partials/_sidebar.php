@@ -16,7 +16,7 @@
                         if ($sub_menu->num_rows() > 0) {?>
                                 <li class="menu-item-has-children dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="menu-icon <?= $main->icon ?>"></i><?= $main->nama_menu ?>
+                                        <i class="menu-icon <?= $main->icon .' '. $main->warna  ?>"></i><?= $main->nama_menu ?>
                                     </a>
                                     <ul class="sub-menu children dropdown-menu"> 
                                         <?php foreach ($sub_menu->result() as $sub) {?>
