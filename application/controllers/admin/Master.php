@@ -20,7 +20,7 @@
 			$this->load->view('services/kategori_barang');
 		}
 
-		public function Data_Kategori()
+		public function data_kategori()
 		{
 			$html = '';
 			$data = $this->MasterModel->data_kategori();
@@ -32,11 +32,31 @@
 							<td class="align-middle">'.$dp->nama_kategori.'</td>
 							
 							<td class="align-middle">
-								<button class="btn btn-sm btn-success text-center update-kategori" data-id="'.$dp->id.'">Update</button>
+								<button class="btn btn-sm btn-success text-center update-kategori mr-1 ml-lg-1 mb-1" data-id="'.$dp->id.'" data-nama="'.$dp->nama_kategori.'">Update</button>
+								<button class="btn btn-sm btn-info text-center lihat-barang ml-lg-1 mb-1" data-id="'.$dp->id.'" data-nama="'.$dp->nama_kategori.'">Lihat Barang</button>
 							</td>
 						</tr>';
 			}
 			echo $html;
+		}
+
+		public function add_kategori()
+		{
+			$data['nama_kategori'] = $this->input->post('nama_kategori');
+			$proses = $this->MasterModel->save_kategori($data);
+			if ($proses) {
+				$response = array(
+					'status' => 'success',
+					'message' => 'Data Berhasil Disimpan',
+				);
+			}else{
+				$response = array(
+					'status' => 'error',
+					'message' => 'Data Gagal Disimpan',
+				);
+			}
+
+			echo json_encode($response);
 		}
 	
 	}

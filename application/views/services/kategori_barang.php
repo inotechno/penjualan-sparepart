@@ -1,15 +1,6 @@
-<script src="<?= base_url('assets/js/lib/data-table/datatables.min.js') ?>"></script>
-<script src="<?= base_url('assets/js/lib/data-table/dataTables.bootstrap.min.js') ?>"></script>
-<script src="<?= base_url('assets/js/lib/data-table/dataTables.buttons.min.js') ?>"></script>
-<script src="<?= base_url('assets/js/lib/data-table/buttons.bootstrap.min.js') ?>"></script>
-<script src="<?= base_url('assets/js/lib/data-table/jszip.min.js') ?>"></script>
-<script src="<?= base_url('assets/js/lib/data-table/vfs_fonts.js') ?>"></script>
-<script src="<?= base_url('assets/js/lib/data-table/buttons.html5.min.js') ?>"></script>
-<script src="<?= base_url('assets/js/lib/data-table/buttons.print.min.js') ?>"></script>
-<script src="<?= base_url('assets/js/lib/data-table/buttons.colVis.min.js') ?>"></script>
-<script src="<?= base_url('assets/js/init/datatables-init.js') ?>"></script>
+
 <script type="text/javascript">
-	jQuery(function($) {
+	$(function() {
 		view_kategori();
 		function view_kategori() {
 			
@@ -23,7 +14,41 @@
 			});			
 		}
 
+		$('#btn-add-kategori').on('click', function() {
+			if ($('[name="nama_kategori"]').val().length == 0){
+		        $('[name="nama_kategori"]').addClass('border-danger');
+		        $('[name="nama_kategori"]').focus();
+		        return false;
+		    }
+			var nama_kategori = $('[name="nama_kategori"]').val();
 
+			$.ajax({
+				url: '<?= site_url('admin/Master/add_kategori') ?>',
+				type: 'POST',
+				dataType: 'JSON',
+				data:{nama_kategori:nama_kategori},
+				beforeSend: function()
+			    { 
+			    	$("#btn-add-kategori").html('<span class="fa fa-space-shuttle"></span>   sending ...');
+			    },
+			    success: function (response) {
+			    	$("#btn-add-kategori").html('Save');
+
+			    	$.toast({
+					    heading: response.status,
+					    text: response.message,
+					    showHideTransition: 'plain',
+					    icon: response.status,
+					    position: 'top-left',
+						stack: false
+					});
+
+                    $('#modal-add-kategori').modal('hide');
+                    view_kategori();
+                }
+			});
+			
+		});
 	});
 </script>
 </body>

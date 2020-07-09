@@ -7,6 +7,11 @@
 		{
 			return $this->db->get('kategori')->result();
 		}
+
+		function save_kategori($data)
+		{
+			return $this->db->insert('kategori', $data);
+		}
 	
 	}
 	
