@@ -111,21 +111,74 @@
     </div>
 
     <div class="modal fade" id="modal-update-barang-dijual" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Update barang-dijual</h5>
+            <h5 class="modal-title">Update Produk</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <form id="form-update-barang-dijual" method="post">
-                <input type="hidden" name="id">
-                <div class="form-group">
-                    <label>Nama barang-dijual</label>
-                    <input type="text" name="nama_barang-dijual_update" class="form-control">
+              <div class="row">
+                <div class="col-md-3 align-middle">
+                  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail img-circle img-raised">
+                      <img src="" class="foto-preview" rel="nofollow">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail img-circle img-raised"></div>
+                    <div>
+                      <span class="btn btn-raised btn-sm btn-round btn-default btn-file">
+                      <span class="fileinput-new">Pilih</span>
+                      <span class="fileinput-exists">Change</span>
+                      <input type="file" name="foto_update"/></span>
+                      <br />
+                      <a href="javascript:;" class="btn btn-danger btn-round btn-sm fileinput-exists" data-dismiss="fileinput"></i> Hapus</a>
+                    </div>
+                  </div>
                 </div>
+                <div class="col-md">
+                  <input type="hidden" name="id_barang_dijual">
+                  <input type="hidden" name="foto_barang_dijual">
+                  <div class="form-group">
+                      <label>Kode Barang</label>
+                      <input type="text" name="kode_barang_dijual_update" class="form-control form-control-sm">
+                  </div>
+                  <div class="form-group">
+                      <label>Nama Barang</label>
+                      <input type="text" name="nama_barang_dijual_update" class="form-control form-control-sm">
+                  </div>
+
+                </div>
+
+                <div class="col-md">
+                  <div class="form-group">
+                    <label>Kategori</label>
+                    <select class="form-control form-control-sm" name="kategori_barang_dijual_update">
+                      <?php 
+                        $kategori = $this->db->get('kategori')->result();
+                        foreach ($kategori as $kat) {?>
+                          <option value="<?= $kat->id ?>"><?= $kat->nama_kategori ?></option>
+                        <?php }
+                      ?>
+                    </select>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-md">
+                      <label>Harga</label>
+                      <input type="number" name="harga_barang_dijual_update" class="form-control form-control-sm">
+                    </div>
+                    <div class="col-md">
+                      <label>Stok</label>
+                      <input type="number" name="stok_barang_dijual_update" class="form-control form-control-sm">
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary" id="btn-update-barang-dijual">Save</button>

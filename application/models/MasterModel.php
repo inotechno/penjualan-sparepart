@@ -35,6 +35,11 @@
 		{
 			return $this->db->insert('barang', $data);
 		}
+
+		function update_barang($data, $id)
+		{
+			return $this->db->update('barang', $data, array('id' => $id));
+		}
 	// End Produk Dijual Model	
 
 	}

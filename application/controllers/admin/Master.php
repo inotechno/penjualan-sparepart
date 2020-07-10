@@ -99,13 +99,13 @@
 			$no = 1;
 			foreach ($data as $dp) {
 				if ($dp->foto == '') {
-					$foto = '<img src="'.base_url('assets/assets/img/produk/produk-default.png').'">';
+					$foto = base_url('assets/assets/img/produk/produk-default.png');
 				}else{
-					$foto = '<img src="'.base_url('assets/assets/img/produk/'.$dp->foto).'">';
+					$foto = base_url('assets/assets/img/produk/'.$dp->foto);
 				}
 				$html .= '<tr>
 
-							<td class="align-middle">'.$foto.'</td>
+							<td class="align-middle"><img width="80" height="80" src="'.$foto.'"></td>
 							<td class="align-middle">'.$dp->kode_barang.'</td>
 							<td class="align-middle">'.$dp->nama_barang.'</td>
 							<td class="align-middle">'.$dp->nama_kategori.'</td>
@@ -113,7 +113,15 @@
 							<td class="align-middle">'.$dp->harga.'</td>
 							
 							<td class="align-middle">
-								<button class="btn btn-sm btn-success text-center update-kategori mr-1 ml-lg-1 mb-1" data-id="'.$dp->id.'" data-nama="'.$dp->nama_barang.'">Update</button>
+								<button class="btn btn-sm btn-success text-center update-produk mr-1 ml-lg-1 mb-1" 
+									data-id="'.$dp->id.'" 
+									data-nama="'.$dp->nama_barang.'" 
+									data-kode="'.$dp->kode_barang.'" 
+									data-kategori="'.$dp->id_kategori.'" 
+									data-stok="'.$dp->stok.'" 
+									data-harga="'.$dp->harga.'" 
+									data-foto="'.$dp->foto.'"
+									data-foto-preview="'.$foto.'">Update</button>
 								<button class="btn btn-sm btn-info text-center lihat-barang ml-lg-1 mb-1" data-id="'.$dp->id.'" data-nama="'.$dp->nama_barang.'">Lihat Barang</button>
 							</td>
 						</tr>';
@@ -158,6 +166,51 @@
 				$response = array(
 					'status' => 'error',
 					'message' => 'Upload Produk Gagal',
+				);
+			}
+		
+			echo json_encode($response);
+		}
+
+		public function edit_barang()
+		{
+			$id = $this->input->post('id');
+			$config['upload_path'] = './assets/assets/img/produk/';
+	        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+	        $config['max_size'] = '1024';
+	        $config['file_name'] = $this->input->post('kode_barang');
+	        $this->load->library('upload', $config);
+
+	         if($this->upload->do_upload("foto")){
+				$foto = $this->upload->file_name;
+				@unlink("./assets/assets/img/produk/".$this->input->post('foto_lama'));
+			} else {
+				$foto = $this->input->post('foto_lama');
+			} 
+			
+			$data = array(
+	 			'kode_barang' 		=> $this->input->post('kode_barang'),
+	 			'nama_barang' 		=> $this->input->post('nama_barang'),
+	 			'id_kategori' 		=> $this->input->post('kategori'),
+	 			'harga' 			=> $this->input->post('harga'),
+	 			'stok' 				=> $this->input->post('stok'),
+	 			
+	 			'status' 				=> 1,
+	 			'create_at' 			=> date('Y-m-d H:i:s'),
+	 			'create_by' 			=> $this->session->userdata('id'),
+	 			'foto' 					=> $foto
+			);
+
+			$proses = $this->MasterModel->update_barang($data, $id);
+			if ($proses) {
+				$response = array(
+					'status' => 'success',
+					'message' => 'Update Produk Berhasil',
+				);
+			}else{
+				$response = array(
+					'status' => 'error',
+					'message' => 'Update Produk Gagal',
 				);
 			}
 		
