@@ -6,8 +6,8 @@
 		public function index()
 		{
 			$this->load->view('_partials/_head');
-			$this->load->view('_partials/_sidebar');
 			$this->load->view('_partials/_header');
+			$this->load->view('_partials/_sidebar');
 			$this->load->view('_partials/_main');
 			$this->load->view('_partials/_footer');
 			$this->load->view('_partials/_plugin');

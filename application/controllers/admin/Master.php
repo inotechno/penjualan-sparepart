@@ -8,12 +8,12 @@
 			parent::__construct();
 			$this->load->model('MasterModel');
 		}
-	
+	// Kategori
 		public function Kategori_Barang()
 		{
 			$this->load->view('_partials/_head');
-			$this->load->view('_partials/_sidebar');
 			$this->load->view('_partials/_header');
+			$this->load->view('_partials/_sidebar');
 			$this->load->view('admin/kategori_barang');
 			$this->load->view('_partials/_footer');
 			$this->load->view('_partials/_plugin');
@@ -58,7 +58,112 @@
 
 			echo json_encode($response);
 		}
-	
+
+		public function edit_kategori()
+		{
+			$id = $this->input->post('id');
+			$data['nama_kategori'] = $this->input->post('nama_kategori');
+
+			$proses = $this->MasterModel->update_kategori($data, $id);
+			if ($proses) {
+				$response = array(
+					'status' => 'success',
+					'message' => 'Data Berhasil Diubah',
+				);
+			}else{
+				$response = array(
+					'status' => 'error',
+					'message' => 'Data Gagal Diubah',
+				);
+			}
+
+			echo json_encode($response);
+		}
+	// End Kategori
+	// Barang Dijual
+		public function barang_dijual()
+		{
+			$this->load->view('_partials/_head');
+			$this->load->view('_partials/_header');
+			$this->load->view('_partials/_sidebar');
+			$this->load->view('admin/barang_dijual');
+			$this->load->view('_partials/_footer');
+			$this->load->view('_partials/_plugin');
+			$this->load->view('services/barang_dijual');
+		}
+
+		public function data_barang_dijual()
+		{
+			$html = '';
+			$data = $this->MasterModel->data_barang_dijual();
+			$no = 1;
+			foreach ($data as $dp) {
+				if ($dp->foto == '') {
+					$foto = '<img src="'.base_url('assets/assets/img/produk/produk-default.png').'">';
+				}else{
+					$foto = '<img src="'.base_url('assets/assets/img/produk/'.$dp->foto).'">';
+				}
+				$html .= '<tr>
+
+							<td class="align-middle">'.$foto.'</td>
+							<td class="align-middle">'.$dp->kode_barang.'</td>
+							<td class="align-middle">'.$dp->nama_barang.'</td>
+							<td class="align-middle">'.$dp->nama_kategori.'</td>
+							<td class="align-middle">'.$dp->stok.'</td>
+							<td class="align-middle">'.$dp->harga.'</td>
+							
+							<td class="align-middle">
+								<button class="btn btn-sm btn-success text-center update-kategori mr-1 ml-lg-1 mb-1" data-id="'.$dp->id.'" data-nama="'.$dp->nama_barang.'">Update</button>
+								<button class="btn btn-sm btn-info text-center lihat-barang ml-lg-1 mb-1" data-id="'.$dp->id.'" data-nama="'.$dp->nama_barang.'">Lihat Barang</button>
+							</td>
+						</tr>';
+			}
+			echo $html;
+		}
+
+		public function add_barang()
+		{
+			$config['upload_path'] = './assets/assets/img/produk/';
+	        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+	        $config['max_size'] = '1024';
+	        $config['file_name'] = $this->input->post('kode_barang');
+	        $this->load->library('upload', $config);
+
+	        if($this->upload->do_upload("foto")){
+				$foto = $this->upload->file_name;
+			} else {
+				$foto = '';
+			}
+
+			$data = array(
+	 			'kode_barang' 		=> $this->input->post('kode_barang'),
+	 			'nama_barang' 		=> $this->input->post('nama_barang'),
+	 			'id_kategori' 		=> $this->input->post('kategori'),
+	 			'harga' 			=> $this->input->post('harga'),
+	 			'stok' 				=> $this->input->post('stok'),
+	 			
+	 			'status' 				=> 1,
+	 			'create_at' 			=> date('Y-m-d H:i:s'),
+	 			'create_by' 			=> $this->session->userdata('id'),
+	 			'foto' 					=> $foto
+			);
+
+			$proses = $this->MasterModel->add_barang($data);
+			if ($proses) {
+				$response = array(
+					'status' => 'success',
+					'message' => 'Upload Produk Berhasil',
+				);
+			}else{
+				$response = array(
+					'status' => 'error',
+					'message' => 'Upload Produk Gagal',
+				);
+			}
+		
+			echo json_encode($response);
+		}
+	// End Barang Dijual
 	}
 	
 	/* End of file Master.php */

@@ -1,84 +1,85 @@
-        <div class="breadcrumbs">
-            <div class="breadcrumbs-inner">
-                <div class="row m-0">
-                    <div class="col-sm-4">
-                        <div class="page-header float-left">
-                            <div class="page-title">
-                                <h1>Kategori Barang</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="page-header float-right">
-                            <div class="page-title">
-                                <ol class="breadcrumb text-right">
-                                    <li><a href="#">Dashboard</a></li>
-                                    <li><a href="#">Master</a></li>
-                                    <li class="active">Kategori Barang</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
+ <!-- End Navbar -->
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title float-left">DAFTAR KATEGORI</h4>
+                 <button class="btn btn-sm btn-success float-right align-middle" data-target="#modal-add-kategori" data-toggle="modal"><span class="fa fa-plus"></span> New</button>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive p-2">
+                  <table class="table" id="table-kategori">
+                    <thead class="text-primary">
+                      <th style="width: 5%">
+                        No
+                      </th>
+                      <th>
+                        Nama Kategori
+                      </th>
+                      <th style="width: 25%">
+                        Action
+                      </th>
+
+                    </thead>
+                    <tbody id="view-kategori">
+                    </tbody>
+                  </table>
                 </div>
+              </div>
             </div>
+          </div>
+          
         </div>
+      </div>
 
-        <div class="content">
-            <div class="animated fadeIn">
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Kategori Barang</strong>
-                                <button class="btn btn-success btn-sm float-right" id="add-kategori" data-target="#modal-add-kategori" data-toggle="modal">+</button>
-                            </div>
-                            <div class="card-body">
-                                <table id="table-kategori" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 15px;">No</th>
-                                            <th>Name</th>
-                                            <th style="width: 30%">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="view-kategori">
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-
+    <div class="modal fade" id="modal-add-kategori" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tambah Kategori</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="form-add-kategori" method="post">
+                <div class="form-group">
+                    <label>Nama Kategori</label>
+                    <input type="text" name="nama_kategori" class="form-control">
                 </div>
-            </div><!-- .animated -->
-        </div><!-- .content -->
-
-
-        <div class="clearfix"></div>
-
-        <div class="modal fade" id="modal-add-kategori">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="mediumModalLabel">Tambah Kategori</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="form-add-kategori" method="POST">
-                            <div class="form-group">
-                                <label>Nama Kategori</label>
-                                <input type="text" name="nama_kategori" class="form-control">
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" id="btn-add-kategori" class="btn btn-primary">Save</button>
-                    </div>
-                        </form>
-                </div>
-            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" id="btn-add-kategori">Save</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </form>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-update-kategori" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Update Kategori</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="form-update-kategori" method="post">
+                <input type="hidden" name="id">
+                <div class="form-group">
+                    <label>Nama Kategori</label>
+                    <input type="text" name="nama_kategori_update" class="form-control">
+                </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" id="btn-update-kategori">Save</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
