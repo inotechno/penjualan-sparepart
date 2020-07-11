@@ -83,3 +83,34 @@
         </div>
       </div>
     </div>
+
+    <div class="modal fade" id="modal-lihat-produk-kategori" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Daftar Produk Kategori <span id="nama_kategori"></span></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <th>No</th>
+                  <th>Kode Barang</th>
+                  <th>Nama Barang</th>
+                  <th>Stok Barang</th>
+                  <th>Harga Barang</th>
+                  <th>Status</th>
+                </thead>
+                <tbody id="daftar_produk_kategori"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>

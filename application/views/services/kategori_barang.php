@@ -107,6 +107,36 @@
 
 			return false;
 		});
+
+		$('#view-kategori').on('click', '.lihat-produk-kategori', function() {
+			var id = $(this).attr('data-id');
+			var nama = $(this).attr('data-nama');
+			
+			$('#nama_kategori').html(nama);
+			$.ajax({
+				url: '<?= base_url('admin/Master/get_produk_by_kategori') ?>',
+				type: 'POST',
+				dataType: 'JSON',
+				data:{id:id},
+				success:function (data) {
+					var i;
+					var html = '';
+					var no = 1;
+					for (var i = data.length - 1; i >= 0; i--) {
+						html += '<tr>'+
+									'<td style="width:20px">'+no+++'</td>'+
+									'<td>'+data[i].kode_barang+'</td>'+
+									'<td>'+data[i].nama_barang+'</td>'+
+									'<td>'+data[i].stok+'</td>'+
+									'<td>'+data[i].harga+'</td>'+
+									'<td>'+data[i].status_barang+'</td>'+
+								'</tr>';
+					}
+					$('#daftar_produk_kategori').html(html);
+					$('#modal-lihat-produk-kategori').modal('show');
+				}
+			});
+		});
 	});
 </script>
 </body>

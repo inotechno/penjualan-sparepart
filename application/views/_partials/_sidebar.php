@@ -72,7 +72,7 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link btn-rotate" href="javascript:;">
-                  <i class="nc-icon nc-settings-gear-65"></i>
+                  <i class="nc-icon nc-user-run"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Account</span>
                   </p>

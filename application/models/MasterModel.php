@@ -19,6 +19,18 @@
 		{
 			return $this->db->update('kategori', $data, array('id' => $id));
 		}
+
+		function get_produk_by_kategori($id)
+		{
+			$this->db->select('id, nama_barang, kode_barang, stok, harga, foto');
+			$this->db->select('CASE 
+				WHEN status = 1 THEN "Dijual" 
+				WHEN status = 0 THEN "Tidak Dijual"
+				END as status_barang', false);
+			$this->db->from('barang');
+			$this->db->where('id_kategori', $id);
+			return $this->db->get()->result();
+		}
 	
 	// End Kategori Model	
 	// Produk Dijual Model	
@@ -42,6 +54,21 @@
 		}
 	// End Produk Dijual Model	
 
+	// Produk Konsumen
+		function daftar_produk($search)
+		{
+			$this->db->select('*');
+			$this->db->from('barang');
+			$this->db->join('kategori', 'barang.id_kategori = kategori.id', 'left');
+			$this->db->where('status', 1);
+			if ($search != '') {
+				$this->db->group_start();
+					$this->db->or_like('nama_barang', $search);
+				$this->db->group_end();
+			}
+			return $this->db->get();
+		}
+	// End Produk Konsumen
 	}
 	
 	/* End of file MasterModel.php */

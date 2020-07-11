@@ -43,8 +43,8 @@
 					);
 			}else{
 				$response = array(
-					'status' => 'error',
-					'message' => 'Username Atau Password yang anda masukan salah !',
+					'status' => 'warning',
+					'message' => 'Username Atau Password yang anda masukan salah!',
 					'redirect' => base_url('login')
 					);
 			};

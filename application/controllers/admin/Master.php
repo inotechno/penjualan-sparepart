@@ -9,6 +9,13 @@
 			$this->load->model('MasterModel');
 		}
 	// Kategori
+		public function get_produk_by_kategori()
+		{
+			$id = $this->input->post('id');
+			$data = $this->MasterModel->get_produk_by_kategori($id);
+			echo json_encode($data);
+		}
+
 		public function Kategori_Barang()
 		{
 			$this->load->view('_partials/_head');
@@ -33,7 +40,7 @@
 							
 							<td class="align-middle">
 								<button class="btn btn-sm btn-success text-center update-kategori mr-1 ml-lg-1 mb-1" data-id="'.$dp->id.'" data-nama="'.$dp->nama_kategori.'">Update</button>
-								<button class="btn btn-sm btn-info text-center lihat-barang ml-lg-1 mb-1" data-id="'.$dp->id.'" data-nama="'.$dp->nama_kategori.'">Lihat Barang</button>
+								<button class="btn btn-sm btn-info text-center lihat-produk-kategori ml-lg-1 mb-1" data-id="'.$dp->id.'" data-nama="'.$dp->nama_kategori.'">Lihat Barang</button>
 							</td>
 						</tr>';
 			}
