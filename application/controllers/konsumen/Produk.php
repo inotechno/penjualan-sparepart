@@ -44,9 +44,9 @@
 								    <h6 class="card-title">'.$dp->nama_barang.'</h6>
 								    <div class="card-text row">
 								    	<p class="text-warning float-left col-sm">120 Terjual</p>
-								    	<p class="text-info float-right col-sm text-right">'.$dp->nama_kategori.'</p>
+								    	<p class="text-info float-right col-sm text-right"><span class="badge badge-info">'.$dp->nama_kategori.'</span></p>
 								    </div>
-								    <a href="javascript:;" class="btn btn-primary">Beli</a>
+								    <button class="btn btn-primary beli-produk" data-id="'.$dp->id.'" data-nama="'.$dp->nama_barang.'" data-stok="'.$dp->stok.'" data-harga="'.$dp->harga.'" data-foto="'.$dp->foto.'" data-kategori="'.$dp->nama_kategori.'">Beli</button>
 								  </div>
 								</div>
 							</div>';

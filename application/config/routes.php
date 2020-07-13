@@ -55,3 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['admin/kategori_barang'] = 'admin/Master/Kategori_Barang/';
 $route['admin/barang_dijual'] = 'admin/Master/barang_dijual/';
+$route['konsumen/transaksi_pending'] = 'konsumen/Transaksi/transaksi_pending/';
