@@ -11,7 +11,7 @@
 					$('#view-transaksi-pending').html(data);
 					$('#table-transaksi-pending').DataTable();
 				}
-			});			
+			});
 		}
 
 	});

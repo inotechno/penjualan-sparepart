@@ -33,6 +33,15 @@
 			$this->db->where('id_konsumen', $this->session->userdata('id'));
 			return $this->db->get()->result();
 		}
+
+		function get_transaksi($kode_transaksi)
+		{
+			$this->db->select('transaksi.*, barang.*');
+			$this->db->from('transaksi');
+			$this->db->join('barang', 'barang.id = transaksi.id_barang', 'left');
+			$this->db->where('transaksi.kode_transaksi', $kode_transaksi);
+			return $this->db->get()->row();
+		}
 	
 	}
 	

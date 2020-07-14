@@ -7,7 +7,7 @@
                 $record_num = $this->uri->segment($last);
                 foreach ($menu->result() as $mn) {?>
                   <li class="<?= $mn->link == $record_num ? 'active' : ''; ?>">
-                    <a href="<?= $mn->link ?>">
+                    <a href="<?= base_url($this->session->userdata('link').'/'.$mn->link) ?>">
                       <i class="<?= $mn->icon .' '.$mn->warna ?>"></i>
                       <p><?= $mn->nama_menu ?></p>
                     </a>
