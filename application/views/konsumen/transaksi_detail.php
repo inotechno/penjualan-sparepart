@@ -20,35 +20,41 @@
                   </div>
 
                   <div class="col-md">
-                    <table class="table table-bordered">
+                    <table class="table">
                       <tr>
                         <td>Nama Barang</td>
-                        
+                        <td>:</td>
                         <td><?= $nama_barang ?></td>
                       </tr>
                       
                       <tr>
                         <td>Harga Barang</td>
-                        
+                        <td>:</td>
                         <td>Rp. <?= $harga ?></td>
                       </tr>
 
                       <tr>
                         <td>Jumlah Order</td>
-                        
+                        <td>:</td>
                         <td><?= $jumlah ?></td>
                       </tr>
 
                       <tr>
                         <td>Jumlah Harga</td>
-                        
+                        <td>:</td>
                         <td>Rp. <?= $harga_beli ?></td>
                       </tr>
 
                       <tr>
                         <td>Tanggal Order</td>
-                        
+                        <td>:</td>
                         <td><?= $tanggal_order ?></td>
+                      </tr>
+
+                      <tr>
+                        <td>Status Pembayaran</td>
+                        <td>:</td>
+                        <td><?= $status_transaksi ?></td>
                       </tr>
                     </table>
                   </div>

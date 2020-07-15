@@ -52,7 +52,7 @@
 		{
 			$html = '';
 			$data = $this->TransaksiModel->transaksi_pending();
-			echo $this->db->last_query($data);
+
 			$no = 1;
 			foreach ($data as $dp) {
 				
@@ -61,6 +61,8 @@
 							<td class="align-middle">'.$dp->kode_transaksi.'</td>
 							<td class="align-middle">'.$dp->nama_barang.'</td>
 							<td class="align-middle">'.$dp->jumlah.'</td>
+							<td class="align-middle">Rp. '.number_format($dp->harga).'</td>
+							<td class="align-middle">Rp. '.number_format($dp->harga*$dp->jumlah).'</td>
 							<td class="align-middle">'.date('d-m-Y', strtotime($dp->date)).'</td>
 							
 							<td class="align-middle">
@@ -81,7 +83,14 @@
 			$data['foto'] = $get->foto;
 			$data['harga'] = number_format($get->harga);
 			$data['jumlah'] = $get->jumlah;
-			$data['harga_beli'] = $get->jumlah*$get->harga;
+
+			if ($get->status_transaksi == 0) {
+				$data['status_transaksi'] = '<span class="badge badge-warning">Belum Lunas</span>';
+			}if ($get->status_transaksi == 1) {
+				$data['status_transaksi'] = '<span class="badge badge-success">Sudah Lunas</span>';
+			}
+
+			$data['harga_beli'] = number_format($get->jumlah*$get->harga);
 			$data['tanggal_order'] = date('d-m-Y', strtotime($get->date));
 
 			$this->load->view('_partials/_head');
@@ -91,6 +100,42 @@
 			$this->load->view('_partials/_footer');
 			$this->load->view('_partials/_plugin');
 			$this->load->view('services/transaksi');
+		}
+
+		public function transaksi_sukses()
+		{
+			$this->load->view('_partials/_head');
+			$this->load->view('_partials/_header');
+			$this->load->view('_partials/_sidebar');
+			$this->load->view('konsumen/transaksi_sukses');
+			$this->load->view('_partials/_footer');
+			$this->load->view('_partials/_plugin');
+			$this->load->view('services/transaksi');
+		}
+
+		public function view_trx_sukses()
+		{
+			$html = '';
+			$data = $this->TransaksiModel->transaksi_sukses();
+
+			$no = 1;
+			foreach ($data as $dp) {
+				
+				$html .= '<tr>
+							<td class="align-middle text-center">'.$no++.'</td>
+							<td class="align-middle">'.$dp->kode_transaksi.'</td>
+							<td class="align-middle">'.$dp->nama_barang.'</td>
+							<td class="align-middle">'.$dp->jumlah.'</td>
+							<td class="align-middle">Rp. '.number_format($dp->harga).'</td>
+							<td class="align-middle">Rp. '.number_format($dp->harga*$dp->jumlah).'</td>
+							<td class="align-middle">'.date('d-m-Y', strtotime($dp->date)).'</td>
+							
+							<td class="align-middle">
+								<a href="'.base_url('konsumen/Transaksi/transaksi_detail/'.$dp->kode_transaksi).'" class="btn btn-sm btn-success text-center mr-1 ml-lg-1 mb-1" data-id="'.$dp->id.'" data-kode="'.$dp->kode_transaksi.'">Lihat Transaksi</a>
+							</td>
+						</tr>';
+			}
+			echo $html;
 		}
 	
 	}

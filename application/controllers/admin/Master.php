@@ -129,7 +129,6 @@
 									data-harga="'.$dp->harga.'" 
 									data-foto="'.$dp->foto.'"
 									data-foto-preview="'.$foto.'">Update</button>
-								<button class="btn btn-sm btn-info text-center lihat-barang ml-lg-1 mb-1" data-id="'.$dp->id.'" data-nama="'.$dp->nama_barang.'">Lihat Barang</button>
 							</td>
 						</tr>';
 			}

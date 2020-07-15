@@ -26,10 +26,20 @@
 
 		function transaksi_pending()
 		{
-			$this->db->select('transaksi.*, barang.nama_barang');
+			$this->db->select('transaksi.*, barang.nama_barang, barang.harga');
 			$this->db->from('transaksi');
 			$this->db->join('barang', 'barang.id = transaksi.id_barang', 'left');
 			$this->db->where('status_transaksi', 0);
+			$this->db->where('id_konsumen', $this->session->userdata('id'));
+			return $this->db->get()->result();
+		}
+
+		function transaksi_sukses()
+		{
+			$this->db->select('transaksi.*, barang.nama_barang, barang.harga');
+			$this->db->from('transaksi');
+			$this->db->join('barang', 'barang.id = transaksi.id_barang', 'left');
+			$this->db->where('status_transaksi', 1);
 			$this->db->where('id_konsumen', $this->session->userdata('id'));
 			return $this->db->get()->result();
 		}
@@ -42,6 +52,31 @@
 			$this->db->where('transaksi.kode_transaksi', $kode_transaksi);
 			return $this->db->get()->row();
 		}
+
+		function transaksi_pending_admin()
+		{
+			$this->db->select('transaksi.*, barang.nama_barang, barang.harga, barang.stok, barang.id as id_barang');
+			$this->db->from('transaksi');
+			$this->db->join('barang', 'barang.id = transaksi.id_barang', 'left');
+			$this->db->where('status_transaksi', 0);
+			return $this->db->get()->result();
+		}
+
+		function transaksi_sukses_admin()
+		{
+			$this->db->select('transaksi.*, barang.nama_barang, barang.harga, barang.stok, barang.id as id_barang');
+			$this->db->from('transaksi');
+			$this->db->join('barang', 'barang.id = transaksi.id_barang', 'left');
+			$this->db->where('status_transaksi', 1);
+			return $this->db->get()->result();
+		}
+
+		function validasi($id, $data, $id_barang, $barang)
+		{
+			$this->db->update('transaksi', $data, array('id' => $id));
+			$this->db->update('barang', $barang, array('id' => $id_barang));
+		}
+
 	
 	}
 	

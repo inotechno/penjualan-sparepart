@@ -8,7 +8,7 @@
               </div>
               <div class="card-body">
                 <div class="table-responsive p-2">
-                  <table class="table" id="table-transaksi-pending">
+                  <table class="table" id="table-transaksi-sukses">
                     <thead class="text-primary">
                       <th style="width: 5%">
                         No
@@ -29,10 +29,10 @@
                         Total
                       </th>
                       <th>
-                        Waktu
+                        Waktu Lunas
                       </th>
                     </thead>
-                    <tbody id="view-transaksi-pending">
+                    <tbody id="view-transaksi-sukses">
                     </tbody>
                   </table>
                 </div>
