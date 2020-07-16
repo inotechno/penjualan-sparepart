@@ -71,10 +71,10 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link btn-rotate" href="javascript:;">
+                <a class="nav-link btn-rotate" id="logout" style="cursor: pointer;">
                   <i class="nc-icon nc-user-run"></i>
                   <p>
-                    <span class="d-lg-none d-md-block">Account</span>
+                    <span class="d-lg-none d-md-block">Logout</span>
                   </p>
                 </a>
               </li>

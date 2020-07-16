@@ -53,10 +53,15 @@ $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['admin/kategori_barang'] = 'admin/Master/Kategori_Barang/';
-$route['admin/barang_dijual'] = 'admin/Master/barang_dijual/';
-$route['konsumen/transaksi_pending'] = 'konsumen/Transaksi/transaksi_pending/';
-$route['konsumen/transaksi_sukses'] = 'konsumen/Transaksi/transaksi_sukses/';
+$route['admin/kategori_barang'] 		= 'admin/Master/Kategori_Barang/';
+$route['admin/barang_dijual'] 			= 'admin/Master/barang_dijual/';
+$route['admin/transaksi_pending'] 		= 'admin/Transaksi/transaksi_pending/';
+$route['admin/transaksi_sukses'] 		= 'admin/Transaksi/transaksi_sukses/';
 
-$route['admin/transaksi_pending'] = 'admin/Transaksi/transaksi_pending/';
-$route['admin/transaksi_sukses'] = 'admin/Transaksi/transaksi_sukses/';
+$route['manajer/kategori_barang'] 		= 'manajer/Master/Kategori_Barang/';
+$route['manajer/barang_dijual'] 		= 'manajer/Master/barang_dijual/';
+$route['manajer/transaksi_pending'] 	= 'manajer/Transaksi/transaksi_pending/';
+$route['manajer/transaksi_sukses'] 		= 'manajer/Transaksi/transaksi_sukses/';
+
+$route['konsumen/transaksi_pending'] 	= 'konsumen/Transaksi/transaksi_pending/';
+$route['konsumen/transaksi_sukses'] 	= 'konsumen/Transaksi/transaksi_sukses/';

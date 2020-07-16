@@ -5,7 +5,7 @@
 		function view_barang_dijual() {
 			
 			$.ajax({
-				url: '<?= site_url('admin/Master/data_barang_dijual') ?>',
+				url: '<?= site_url($this->session->userdata('link').'/Master/data_barang_dijual') ?>',
 				type: 'POST',
 				success:function (data) {
 					$('#view-barang-dijual').html(data);
