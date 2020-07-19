@@ -69,6 +69,32 @@
 			return $this->db->get();
 		}
 	// End Produk Konsumen
+
+	// Dashboard
+		function count_kategori()
+		{
+			$this->db->select('COUNT(kategori.id) as kategori');
+			return $this->db->get('kategori')->row();
+		}
+
+		function count_barang()
+		{
+			$this->db->select('COUNT(barang.id) as barang');
+			return $this->db->get('barang')->row();
+		}
+
+		function count_trx()
+		{
+			$this->db->select('COUNT(
+									IF(status_transaksi = 1, 1,NULL)
+								) as transaksi_sukses,
+								COUNT(
+									IF(status_transaksi = 0, 1,NULL)
+								) as transaksi_pending,');
+			return $this->db->get('transaksi')->row();
+		}
+
+	// END Dashboard
 	}
 	
 	/* End of file MasterModel.php */

@@ -77,6 +77,22 @@
 			$this->db->update('barang', $barang, array('id' => $id_barang));
 		}
 
+		function chartPenjualanKategori($kategori)
+		{
+			$this->db->select('SUM(transaksi.jumlah) as total, MONTH(transaksi.date) as bulan, YEAR(transaksi.date) as tahun, barang.id_kategori');
+			$this->db->from('transaksi');
+			$this->db->join('barang', 'barang.id = transaksi.id_barang', 'left');
+			if ($kategori != '') {
+				$this->db->group_start();
+					$this->db->where('id_kategori', $kategori);
+				$this->db->group_end();
+			}
+			$this->db->where('status_transaksi', 1);
+			$this->db->or_where('transaksi.date', date('Y'));
+			$this->db->group_by('bulan, tahun');
+			return $this->db->get()->result();
+		}
+
 	
 	}
 	

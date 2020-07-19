@@ -91,7 +91,6 @@ demo = {
         },
       }
     });
-
   },
 
   initChartsPages: function() {
