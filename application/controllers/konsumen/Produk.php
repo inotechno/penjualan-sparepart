@@ -37,16 +37,19 @@
 					}else{
 						$foto = base_url('assets/assets/img/produk/'.$dp->foto);
 					}
-					$html .= '<div class="col-md-12">
+					$html .= '<div class="col-md">
 								<div class="card" style="width: 15rem;">
 					  				<img class="card-img-top" src="'.$foto.'" alt="Card image cap">
 					 				<div class="card-body">
 								    <h6 class="card-title">'.$dp->nama_barang.'</h6>
 								    <div class="card-text row">
-								    	<p class="text-warning float-left col-sm">120 Terjual</p>
-								    	<p class="text-info float-right col-sm text-right"><span class="badge badge-info">'.$dp->nama_kategori.'</span></p>
+								    	<p class="text-warning col-sm">120 Terjual</p>
+								    	<p class="text-info col-sm text-right"><span class="badge badge-info">'.$dp->nama_kategori.'</span></p>
 								    </div>
-								    <button class="btn btn-primary beli-produk" data-id="'.$dp->id.'" data-nama="'.$dp->nama_barang.'" data-stok="'.$dp->stok.'" data-harga="'.$dp->harga.'" data-foto="'.$dp->foto.'" data-kategori="'.$dp->nama_kategori.'">Beli</button>
+								    <div class="row">
+									    <button class="btn btn-primary beli-produk col-md" data-id="'.$dp->id.'" data-nama="'.$dp->nama_barang.'" data-stok="'.$dp->stok.'" data-harga="'.$dp->harga.'" data-foto="'.$dp->foto.'" data-kategori="'.$dp->nama_kategori.'">Beli</button>
+									    <div class="btn btn-warning col-md">Rp. '.number_format($dp->harga).'</div>
+									</div>
 								  </div>
 								</div>
 							</div>';

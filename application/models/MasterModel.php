@@ -94,6 +94,19 @@
 			return $this->db->get('transaksi')->row();
 		}
 
+		function produk_terlaris()
+		{
+			$this->db->select('*, SUM(transaksi.jumlah) as terjual');
+			$this->db->from('barang');
+			$this->db->join('kategori', 'barang.id_kategori = kategori.id', 'left');
+			$this->db->join('transaksi', 'transaksi.id_barang = barang.id', 'left');
+			$this->db->where('status', 1);
+			$this->db->order_by('transaksi.jumlah', 'desc');
+			$this->db->group_by('barang.id');
+			$this->db->limit(15);
+			return $this->db->get()->result();
+		}
+
 	// END Dashboard
 	}
 	
